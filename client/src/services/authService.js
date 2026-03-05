@@ -13,7 +13,7 @@ export const login = async (email, password) => {
     throw new Error(data.message);
   }
 
-  // 🔥 store exactly what backend sends
+  
   localStorage.setItem("token", data.token);
   localStorage.setItem("user", JSON.stringify(data.user));
 
