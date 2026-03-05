@@ -14,6 +14,10 @@ const app=express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("NextHire Job Portal API is running");
+});
+
 app.use("/api", testRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/jobs", jobRoutes);
@@ -22,3 +26,4 @@ const PORT= process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });
+
