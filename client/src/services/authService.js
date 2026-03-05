@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/users";
+const API_URL = "https://nexthire-cnwf.onrender.com/api/users";
 
 export const login = async (email, password) => {
   const res = await fetch(`${API_URL}/login`, {
