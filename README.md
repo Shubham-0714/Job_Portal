@@ -52,3 +52,66 @@ I built a fullstack MERN job portal called NextHire where recruiters can post jo
 The frontend is built with React and Tailwind, backend with Node.js and Express, and MongoDB Atlas is used for database.
 Authentication is implemented using JWT tokens and role based access control.
 The application is deployed on Render.
+
+API Documentation: 
+
+1) Register User
+
+Endpoint : POST /api/users/register
+
+Request Body:
+
+{
+ "name": "Shubham",
+ "email": "shubham@example.com",
+ "password": "123456",
+ "role": "candidate"
+}
+
+Response
+
+{
+ "success": true,
+ "message": "User registered successfully"
+}
+
+2) Login User
+
+Endpoint: POST /api/users/login
+
+Request Body
+
+{
+ "email": "shubham@example.com",
+ "password": "123456"
+}
+
+Response
+
+{
+ "success": true,
+ "token": "jwt_token_here",
+ "user": {
+   "id": "user_id",
+   "name": "Shubham",
+   "role": "candidate"
+ }
+}
+
+3) Create Job
+
+Endpoint: POST /api/jobs
+
+Headers:
+
+Authorization: Bearer <my generated token>
+
+Request Body
+
+{
+ "title": "Frontend Developer",
+ "company": "ABC",
+ "location": "Delhi",
+ "description": "Need Frontend Developer",
+ "role": "frontend"
+}
