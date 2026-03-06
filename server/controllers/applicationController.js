@@ -4,7 +4,19 @@ exports.applyJob = async (req, res) => {
   try {
 
     const jobId = req.params.id;
-    const userId = req.user.id;
+    const userId = req.user._id;
+
+    const alreadyApplied = await Application.findOne({
+      job: jobId,
+      applicant: userId
+    });
+
+    if (alreadyApplied) {
+      return res.json({
+        success: false,
+        message: "You already applied for this job"
+      });
+    }
 
     const application = new Application({
       job: jobId,
@@ -19,9 +31,13 @@ exports.applyJob = async (req, res) => {
     });
 
   } catch (error) {
+
+    console.log("APPLICATION ERROR:", error);
+
     res.status(500).json({
       success: false,
       message: "Error applying for job"
     });
+
   }
 };
