@@ -31,12 +31,37 @@ exports.applyJob = async (req, res) => {
     });
 
   } catch (error) {
-
-    console.log("APPLICATION ERROR:", error);
+    console.log(error);
 
     res.status(500).json({
       success: false,
       message: "Error applying for job"
+    });
+  }
+};
+
+
+exports.getApplicants = async (req, res) => {
+  try {
+
+    const jobId = req.params.jobId;
+
+    const applications = await Application.find({ job: jobId })
+      .populate("applicant", "name email")
+      .populate("job", "title company");
+
+    res.json({
+      success: true,
+      applications
+    });
+
+  } catch (error) {
+
+    console.log(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Error fetching applicants"
     });
 
   }
